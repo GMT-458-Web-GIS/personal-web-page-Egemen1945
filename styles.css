@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #e0f7df; /* Light green background for the entire page */
+    color: #333;
+}
+
+header {
+    background-color: #4caf50; /* Green */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background-color: #388e3c; /* Darker green */
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #a5d6a7; /* Light green for hover */
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #c8e6c9; /* Light green background for container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hobbies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hobby {
+    width: 45%; /* Adjust width to fit two items per row */
+    text-align: center;
+    background-color: #66bb6a; /* Green background for hobbies */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.hobby img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.map {
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #388e3c; /* Darker green */
+    color: #fff;
+}

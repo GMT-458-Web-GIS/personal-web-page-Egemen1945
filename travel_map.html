@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Map</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css" type="text/css">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+        .map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Travel Map</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="background.html">Background</a> |
+        <a href="hobbies.html">Hobbies</a>
+    </nav>
+    <div class="container">
+        <div id="map" class="map"></div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Mehmet Egemen Ecevit</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = new ol.Map({
+                target: 'map',
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                    })
+                ],
+                view: new ol.View({
+                    center: ol.proj.fromLonLat([32.8597, 39.9334]), // Türkiye'nin merkezi
+                    zoom: 6
+                })
+            });
+
+            var locations = [
+                { coord: [28.97953, 41.015137], name: 'Istanbul' },
+                { coord: [27.9561, 39.6460], name: 'Balıkesir' },
+                { coord: [29.0865, 37.7738], name: 'Denizli' },
+                { coord: [30.6954, 39.9334], name: 'Eskişehir' },
+                { coord: [29.9390, 40.8333], name: 'Kocaeli' },
+                { coord: [35.3213, 37.0016], name: 'Adana' },
+                { coord: [31.5887, 40.5810], name: 'Bolu' },
+                { coord: [27.1446, 38.4192], name: 'Izmir' },
+                { coord: [28.2930, 37.2179], name: 'Muğla' },
+                { coord: [32.4240, 37.8735], name: 'Konya' },
+                { coord: [26.4095, 40.1499], name: 'Çanakkale' },
+                { coord: [30.6954, 36.9094], name: 'Antalya' },
+                { coord: [10.4515, 51.1657], name: 'Almanya' },
+                { coord: [-95.7129, 37.0902], name: 'Amerika' },
+                { coord: [-106.3468, 56.1304], name: 'Kanada' },
+                { coord: [53.8478, 23.6345], name: 'Birleşik Arap Emirlikleri' },
+                { coord: [4.4699, 50.5039], name: 'Belçika' },
+                { coord: [5.2913, 52.1326], name: 'Hollanda' },
+                { coord: [2.2137, 46.6034], name: 'Fransa' },
+                { coord: [12.5674, 41.8719], name: 'İtalya' }
+            ];
+
+            locations.forEach(function(location) {
+                var marker = new ol.Feature({
+                    geometry: new ol.geom.Point(ol.proj.fromLonLat(location.coord)),
+                    name: location.name
+                });
+
+                var vectorSource = new ol.source.Vector({
+                    features: [marker]
+                });
+
+                var markerLayer = new ol.layer.Vector({
+                    source: vectorSource,
+                    style: new ol.style.Style({
+                        image: new ol.style.Circle({
+                            radius: 15,
+                            fill: new ol.style.Fill({
+                                color: 'red'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'darkred',
+                                width: 3
+                            })
+                        })
+                    })
+                });
+
+                map.addLayer(markerLayer);
+            });
+        });
+    </script>
+</body>
+</html>
+
